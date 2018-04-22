@@ -1,0 +1,28 @@
+<table class="table table-hover">
+	<thead>
+		<tr class="table-active m-0">
+			<th scope="col" class="w-35">Name</th>
+			<th scope="col" class="w-35">Address</th>
+			<th scope="col" class="w-20">Income</th>
+			<th scope="col" class="w-5">Risk</th>
+			<th scope="col" class="w-5"></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngIf="clients.length === 0">
+			<td colspan="5">Empty list.</td>
+		</tr>
+
+		<tr *ngFor="let client of clients">
+			<td>{{ client.name }}</td>
+			<td>{{ client.address }}</td>
+			<td>R$ {{ client.income }}</td>
+			<td>{{ client.risk}}</td>
+			<td><button class="btn btn-outline-secondary oi oi-pencil" [routerLink]="['/client-edit', client.id]"></button></td>
+		</tr>
+	</tbody>
+</table>
+
+<button class="btn btn-primary" [routerLink]="['/client-add']" [disabled]="clients.length === maxClients">New
+	Client</button>
+<span *ngIf="clients.length === maxClients">Maximum of {{maxClients}} clients in the database.</span>
